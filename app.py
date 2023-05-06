@@ -104,7 +104,7 @@ with washington_tab:
     top_cities_col, top_counties_col = st.columns(2)
 
     with top_cities_col:
-        st.header('Top 10 Cities')
+        st.header('Top 20 Cities')
 
         top_cities_chart = alt.Chart(filtered_df).mark_bar().encode(
             x=alt.X('count:Q', title='City Count'),
@@ -116,11 +116,11 @@ with washington_tab:
         ).transform_window(
             window=[{'op': 'rank', 'as': 'rank'}],
             sort=[{'field': 'count', 'order': 'descending'}]
-        ).transform_filter('datum.rank <= 10')
+        ).transform_filter('datum.rank <= 20')
 
         st.altair_chart(top_cities_chart, use_container_width=True)
     with top_counties_col:
-        st.header('Top 10 Counties')
+        st.header('Top 20 Counties')
 
         top_counties_chart = alt.Chart(filtered_df).mark_bar().encode(
             x=alt.X('count:Q', title='County Count'),
@@ -132,7 +132,7 @@ with washington_tab:
         ).transform_window(
             window=[{'op': 'rank', 'as': 'rank'}],
             sort=[{'field': 'count', 'order': 'descending'}]
-        ).transform_filter('datum.rank <= 10')
+        ).transform_filter('datum.rank <= 20')
 
         st.altair_chart(top_counties_chart, use_container_width=True)
     
