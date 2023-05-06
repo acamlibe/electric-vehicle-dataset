@@ -194,12 +194,17 @@ with gas_tab:
 with ev_history_tab:
     st.info('**Info:** Sidebar settings will not affect data on this tab.')
 
-    ev_history_chart = alt.Chart(ev_history_df).mark_line().encode(
+    phev_history_chart = alt.Chart(ev_history_df).mark_line().encode(
         x=alt.X('yearmonth(Date):T', title='Date'),
-        y=alt.Y('Plug-In Hybrid Electric Vehicle (PHEV) Count:Q', title='PHEV Count')
+        y=alt.Y('Plug-In Hybrid Electric Vehicle (PHEV) Count:Q', title='Plug-In Hybrid Electric Vehicle (PHEV) Count')
     )
 
-    st.altair_chart(ev_history_chart, use_container_width=True)
+    bev_history_chart = alt.Chart(ev_history_df).mark_line().encode(
+        x=alt.X('yearmonth(Date):T', title='Date'),
+        y=alt.Y('Battery Electric Vehicle (BEV) Count:Q', title='Battery Electric Vehicle (BEV) Count')
+    )
+
+    st.altair_chart(phev_history_chart + bev_history_chart, use_container_width=True)
 
 with additional_stats:
     st.header('Electric Vehicle Type')
