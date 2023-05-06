@@ -108,7 +108,7 @@ with washington_tab:
 
         top_cities_chart = alt.Chart(filtered_df).mark_bar().encode(
             x=alt.X('count:Q', title='City Count'),
-            y=alt.Y('City:N', sort=alt.SortField(field='count', order='descending', op='sum')),
+            y=alt.Y('City:N', sort=alt.EncodingSortField(field='count', order='descending', op='sum')),
             tooltip=['County', 'City', alt.Tooltip('count:Q', title='City Count')]
         ).transform_aggregate(
             count='count()',
