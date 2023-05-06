@@ -70,7 +70,7 @@ df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
 
 
 gas_df = load_csv('data/Washington_All_Grades_Conventional_Retail_Gasoline_Prices.csv')
-gas_df['Month'] = pd.to_datetime(gas_df['Month'], format='%b-%y')
+gas_df['Month'] = pd.to_datetime(gas_df['Month'], format='%b-%y').dt.date
 
 #### End Data Wrangling ####
 
