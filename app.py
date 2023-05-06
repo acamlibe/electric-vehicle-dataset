@@ -86,7 +86,7 @@ year_range = st.sidebar.slider(label='Model Year', min_value=get_min_year(df), m
 #### End Sidebar ###
 
 ### Content ###
-data_tab, washington_tab, range_tab, gas_tab, additional_stats = st.tabs(['Table', 'Washington State', 'Electric Range', 'Gas Price History', 'Additional Statistics'])
+data_tab, washington_tab, range_tab, gas_tab, additional_stats = st.tabs(['Table', 'Washington State', 'Electric Range', 'Gas Price History', 'EV Type and CAFV Eligibility'])
 filtered_df = get_filtered_df(df, ev_type, make, model, year_range)
 
 with data_tab:
