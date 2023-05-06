@@ -174,35 +174,35 @@ with range_tab:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
 
 with additional_stats:
-    ev_type_col, clean_alt_col = st.columns(2)
+    st.header('Electric Vehicle Type')
+    
+    bev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Battery Electric Vehicle (BEV)'])
+    phev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Plug-in Hybrid Electric Vehicle (PHEV)'])
 
-    with ev_type_col:
-        bev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Battery Electric Vehicle (BEV)'])
-        phev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Plug-in Hybrid Electric Vehicle (PHEV)'])
+    bev_count_col, phev_count_col = st.columns(2)
 
-        bev_count_col, phev_count_col = st.columns(2)
+    with bev_count_col:
+        st.metric(label='Battery Electric Vehicle (BEV)', value=bev_count)
 
-        with bev_count_col:
-            st.metric(label='Battery Electric Vehicle (BEV)', value=bev_count)
+    with phev_count_col:
+        st.metric(label='Plug-in Hybrid Electric Vehicle (PHEV)', value=phev_count)
 
-        with phev_count_col:
-            st.metric(label='Plug-in Hybrid Electric Vehicle (PHEV)', value=phev_count)
+    st.header('Clean Alternative Fuel Vehicle (CAFV) Eligibility')
+    st.write('Learn more here: https://app.leg.wa.gov/rcw/default.aspx?cite=82.08.9999')
 
-    with clean_alt_col:
-        cafv_eligible_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Clean Alternative Fuel Vehicle Eligible'])
-        cafv_not_eligible_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Not eligible due to low battery range'])
-        cafv_unknown_eligibility_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Eligibility unknown as battery range has not been researched'])
+    cafv_eligible_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Clean Alternative Fuel Vehicle Eligible'])
+    cafv_not_eligible_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Not eligible due to low battery range'])
+    cafv_unknown_eligibility_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Eligibility unknown as battery range has not been researched'])
 
-        eligible_col, not_eligible_col, unknown_eligibility_col = st.columns(3)
+    eligible_col, not_eligible_col, unknown_eligibility_col = st.columns(3)
 
-        with eligible_col:
-            st.metric(label='Eligible', value=cafv_eligible_count)
-        
-        with not_eligible_col:
-            st.metric(label='Not Eligible (Low Range)', value=cafv_not_eligible_count)
+    with eligible_col:
+        st.metric(label='Eligible', value=cafv_eligible_count)
 
-        with unknown_eligibility_col:
-            st.metric(label='Unknown Eligibility', value=cafv_unknown_eligibility_count)
+    with not_eligible_col:
+        st.metric(label='Not Eligible (Low Range)', value=cafv_not_eligible_count)
 
+    with unknown_eligibility_col:
+        st.metric(label='Unknown Eligibility', value=cafv_unknown_eligibility_count)
 
 ### End Content ###
