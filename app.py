@@ -177,8 +177,8 @@ with additional_stats:
     ev_type_col, clean_alt_col = st.columns(2)
 
     with ev_type_col:
-        bev_count = filtered_df[filtered_df['Electric Vehicle Type'] == 'Battery Electric Vehicle (BEV)'].count()
-        phev_count = filtered_df[filtered_df['Electric Vehicle Type'] == 'Plug-in Hybrid Electric Vehicle (PHEV)'].count()
+        bev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Battery Electric Vehicle (BEV)'])
+        phev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Plug-in Hybrid Electric Vehicle (PHEV)'])
 
         bev_count_col, phev_count_col = st.columns(2)
 
@@ -189,20 +189,20 @@ with additional_stats:
             st.metric(label='Plug-in Hybrid Electric Vehicle (PHEV)', value=phev_count)
 
     with clean_alt_col:
-        cafv_eligible = filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Clean Alternative Fuel Vehicle Eligible'].count()
-        cafv_not_eligible = filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Not eligible due to low battery range'].count()
-        cafv_unknown_eligibility = filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Eligibility unknown as battery range has not been researched'].count()
+        cafv_eligible_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Clean Alternative Fuel Vehicle Eligible'])
+        cafv_not_eligible_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Not eligible due to low battery range'])
+        cafv_unknown_eligibility_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Eligibility unknown as battery range has not been researched'])
 
         eligible_col, not_eligible_col, unknown_eligibility_col = st.columns(3)
 
         with eligible_col:
-            st.metric(label='Eligible', value=cafv_eligible)
+            st.metric(label='Eligible', value=cafv_eligible_count)
         
         with not_eligible_col:
-            st.metric(label='Not Eligible (Low Range)', value=cafv_not_eligible)
+            st.metric(label='Not Eligible (Low Range)', value=cafv_not_eligible_count)
 
         with unknown_eligibility_col:
-            st.metric(label='Unknown Eligibility', value=cafv_unknown_eligibility)
+            st.metric(label='Unknown Eligibility', value=cafv_unknown_eligibility_count)
 
 
 ### End Content ###
