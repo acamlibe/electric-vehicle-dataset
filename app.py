@@ -190,7 +190,7 @@ with additional_stats:
     cafv_not_eligible_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Not eligible due to low battery range'])
     cafv_unknown_eligibility_count = len(filtered_df[filtered_df['Clean Alternative Fuel Vehicle (CAFV) Eligibility'] == 'Eligibility unknown as battery range has not been researched'])
 
-    st.metric(label='Eligible', value=cafv_eligible_count)
-    st.metric(label='Not Eligible (Low Range)', value=cafv_not_eligible_count)
-    st.metric(label='Unknown Eligibility', value=cafv_unknown_eligibility_count)
+    st.metric(label='Eligible', value=f'{cafv_eligible_count:,}')
+    st.metric(label='Not Eligible (Low Range)', value=f'{cafv_not_eligible_count:,}')
+    st.metric(label='Unknown Eligibility', value=f'{cafv_unknown_eligibility_count:,}')
 ### End Content ###
