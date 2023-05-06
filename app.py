@@ -123,15 +123,16 @@ with washington_tab:
         st.header('Top 10 Counties')
 
         top_counties_chart = alt.Chart(filtered_df).mark_bar().encode(
-            x=alt.X('count(County):Q', title='County Count'),
-            y=alt.Y('County:N', sort='-x'),
-            tooltip=['County', alt.Tooltip('count(County):Q', title='County Count')]
+            x=alt.X('count:Q', title='County Count'),
+            y=alt.Y('County:N', sort=alt.EncodingSortField(field='count', order='descending', op='sum')),
+            tooltip=['County', alt.Tooltip('count:Q', title='County Count')]
+        ).transform_aggregate(
+            count='count()',
+            groupby=['County']
         ).transform_window(
-            rank='rank(count(County))',
-            sort=[alt.SortField('count(County)', order='descending')]
-        ).transform_filter(
-            (alt.datum.rank < 10)
-        )
+            window=[{'op': 'rank', 'as': 'rank'}],
+            sort=[{'field': 'count', 'order': 'descending'}]
+        ).transform_filter('datum.rank <= 10')
 
         st.altair_chart(top_counties_chart, use_container_width=True)
     
