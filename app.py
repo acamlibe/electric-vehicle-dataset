@@ -42,25 +42,19 @@ def get_filtered_df(df, ev_type, make, model, year_range):
 
     return filtered_df
 
-def df_wrangle(df):
-    df = df[df['State'] == 'WA']
-    df['Vehicle Location'] = df['Vehicle Location'].str.replace('POINT \(', '', regex=True)
-    df['Vehicle Location'] = df['Vehicle Location'].str.replace(')', '', regex=True)
-
-    df[['LATITUDE', 'LONGITUDE']] = df['Vehicle Location'].str.split(expand=True)
-
-    df = df.drop(['Vehicle Location'], axis = 1)
-
-    df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
-    df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
-
-    return df
-
 st.set_page_config(layout='wide')
 
 df = load_csv('data/Electric_Vehicle_Population_Data.csv')
-df = df_wrangle(df)
 
+df = df[df['State'] == 'WA']
+df['Vehicle Location'] = df['Vehicle Location'].str.extract('.*\((.*)\).*')
+
+df[['LATITUDE', 'LONGITUDE']] = df['Vehicle Location'].str.split(expand=True)
+
+df = df.drop(['Vehicle Location'], axis = 1)
+
+df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
+df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
 
 st.title('Electric-Vehicle Ownership in the State of Washington')
 
@@ -86,7 +80,7 @@ with data_tab:
 
 with washington_tab:
     map_df = filtered_df[filtered_df['LATITUDE'].notna() & filtered_df['LONGITUDE'].notna()]
-
+    st.dataframe(map_df)
     st.map(map_df)
     
 with range_tab:
