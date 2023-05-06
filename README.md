@@ -27,7 +27,7 @@ The data used in this app is found in three CSV files.
 - Date conversions
 - Converted from geocoded POINT variable to latitude and longitude columns
 - NA values have been dropped for the Plotly.Express map display
-- Electric ranges that have not been disclosed (0) dropped for EV range analysis
+- Electric ranges that have not been disclosed (0) were dropped for EV range analysis
 
 ## Use Case
 It is important to note how, where, and why EV ownership is growing in the State of Washington. This can enable users such as government employees, dealerships, and EV manufacturers target specific cities/counties depending on EV ownership.
