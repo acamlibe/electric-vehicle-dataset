@@ -81,11 +81,26 @@ with data_tab:
 
 with washington_tab:
     map_df = filtered_df[filtered_df['LATITUDE'].notna() & filtered_df['LONGITUDE'].notna()]
+
     fig = px.scatter_mapbox(map_df, lat="LATITUDE", lon="LONGITUDE", zoom=5)
 
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
+
+    top_cities_col, top_counties_col = st.columns(2)
+
+    with top_cities_col:
+        top_electric_range_chart = alt.Chart(filtered_df).mark_bar().encode(
+            x=alt.X('count(County):Q', title='Count'),
+            y=alt.Y('County:N', sort='-x'),
+            tooltip=['County', alt.Tooltip('county_count:Q', title='Count')]
+        )
+
+        st.altair_chart(top_electric_range_chart, use_container_width=True)
+    with top_counties_col:
+        pass
+    
 with range_tab:
     st.info('**Info:** Data recorded with a **0** electric range are ignored.')
 
@@ -109,16 +124,16 @@ with range_tab:
 
         st.markdown('<p style="font-size: 1.25rem;"><strong>Statistics:</strong> ' + make.lower().capitalize() + ' ' + model.lower().title() + '</p>', unsafe_allow_html=True)
 
-        col1, col2, col3, col4 = st.columns(4)
+        avg_range_col, median_range_col, max_range_col, min_range_col = st.columns(4)
 
-        with col1:
+        with avg_range_col:
             st.metric(label='Average Range', value=round(np.mean(range_filtered_df['Electric Range'])))
         
-        with col2:
+        with median_range_col:
             st.metric(label='Median Range', value=round(np.median(range_filtered_df['Electric Range'])))
         
-        with col3:
+        with max_range_col:
             st.metric(label='Max Range', value=round(np.max(range_filtered_df['Electric Range'])))
         
-        with col4:
+        with min_range_col:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
