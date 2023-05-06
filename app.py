@@ -4,6 +4,8 @@ import numpy as np
 import altair as alt
 import plotly.express as px
 
+#### Functions/Methods ####
+
 @st.cache_data
 def load_csv(path):
     return pd.read_csv(path)
@@ -43,7 +45,9 @@ def get_filtered_df(df, ev_type, make, model, year_range):
 
     return filtered_df
 
-st.set_page_config(layout='wide')
+#### End Functions/Methods ####
+
+#### Data Wrangling ####
 
 df = load_csv('data/Electric_Vehicle_Population_Data.csv')
 
@@ -57,9 +61,17 @@ df = df.drop(['Vehicle Location EXTRACT'], axis = 1)
 df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
 df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
 
+
+#### End Data Wrangling ####
+
+### Streamlit General ###
+st.set_page_config(layout='wide')
 st.title('Electric-Vehicle Ownership in the State of Washington')
 
+### End Streamlit General ###
+
 #### Sidebar ####
+st.sidebar.info('All data on app is reactive to changes here.')
 ev_type = st.sidebar.selectbox(label='EV Type', options=['All', 'Battery Electric Vehicle (BEV)', 'Plug-in Hybrid Electric Vehicle (PHEV)'])
 
 make = st.sidebar.selectbox(label='Make', options=get_makes_list(df))
@@ -130,7 +142,7 @@ with range_tab:
             groupby=['Make', 'Model']
         )
 
-        st.altair_chart(top_electric_range_chart, use_container_width=True)
+        st.altair_chart(top_electric_range_chart)
     else:
         st.info('**Info:** Select All models to see a bar chart of the list of models.')
 
@@ -149,3 +161,5 @@ with range_tab:
         
         with min_range_col:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
+
+### End Content ###
