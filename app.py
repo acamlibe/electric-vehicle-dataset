@@ -80,6 +80,8 @@ with data_tab:
         st.warning('**Warning:** No data found. Change your filters.')
 
 with washington_tab:
+    st.header('Map of Washington State')
+
     map_df = filtered_df[filtered_df['LATITUDE'].notna() & filtered_df['LONGITUDE'].notna()]
 
     fig = px.scatter_mapbox(map_df, lat="LATITUDE", lon="LONGITUDE", zoom=5)
