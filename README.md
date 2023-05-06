@@ -20,7 +20,7 @@ CAFV Bill Details: https://app.leg.wa.gov/rcw/default.aspx?cite=82.08.9999
 ## Data Sources
 The data used in this app is found in three CSV files.
 1. Electric Vehicle Population Dataset (https://data.wa.gov/Transportation/Electric-Vehicle-Population-Data/f6w7-q2d2)
-2. Electric Vehicle SizeHistory Dataset (https://data.wa.gov/Transportation/Electric-Vehicle-Population-Size-History/d886-d5q2/data)
+2. Electric Vehicle Size History Dataset (https://data.wa.gov/Transportation/Electric-Vehicle-Population-Size-History/d886-d5q2/data)
 3. Washington State All Grades Conventional Retail Gasoline Prices (https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=pet&s=emm_epm0u_pte_swa_dpg&f=m)
 
 ## Data Preparation
