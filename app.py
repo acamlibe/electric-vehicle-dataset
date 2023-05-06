@@ -178,12 +178,20 @@ with additional_stats:
 
     with ev_type_col:
         ev_type_chart = alt.Chart(filtered_df).mark_bar().encode(
-            x=alt.X('Electric Vehicle Type:N', sort=alt.EncodingSortField(field='count', order='descending', op='sum')),
-            y=alt.Y('count(Electric Vehicle Type):Q', title='EV Type Count'),
+            x=alt.X('count(Electric Vehicle Type):Q', title='EV Type Count'),
+            y=alt.Y('Electric Vehicle Type:N', sort=alt.EncodingSortField(field='count', order='descending', op='sum')),
             tooltip=['Electric Vehicle Type', alt.Tooltip('count:Q', title='EV Type Count')]
         )
 
         st.altair_chart(ev_type_chart, use_container_width=True)
 
+    with clean_alt_col:
+        clean_alt_chart = alt.Chart(filtered_df).mark_bar().encode(
+            x=alt.X('count(Clean Alternative Fuel Vehicle (CAFV) Eligibility):Q', title='Clean Alternative Fuel Vehicle (CAFV) Eligibility Count'),
+            y=alt.Y('Clean Alternative Fuel Vehicle (CAFV) Eligibility:N', sort=alt.EncodingSortField(field='count', order='descending', op='sum')),
+            tooltip=['Clean Alternative Fuel Vehicle (CAFV) Eligibility', alt.Tooltip('count:Q', title='Clean Alternative Fuel Vehicle (CAFV) Eligibility Count')]
+        )
+
+        st.altair_chart(clean_alt_chart, use_container_width=True)
 
 ### End Content ###
