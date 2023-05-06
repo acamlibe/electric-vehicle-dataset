@@ -178,6 +178,8 @@ with range_tab:
 with gas_tab:
     st.dataframe(gas_df)
 
+    filtered_gas_df = gas_df[gas_df['Month'] > '2018-01-01']
+
     gas_price_history_chart = alt.Chart(gas_df).mark_line().encode(
         x=alt.X('Month:T', title='Month'),
         y=alt.Y('Washington All Grades Conventional Retail Gasoline Prices Dollars per Gallon:Q', title='Gas Price ($)')
