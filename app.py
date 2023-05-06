@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import plotly.express as px
+import datetime
 
 #### Functions/Methods ####
 
@@ -182,7 +183,7 @@ with gas_tab:
 
     st.write(gas_df.dtypes)
 
-    filtered_gas_df = gas_df[gas_df['Month'] > '2018-01-01']
+    filtered_gas_df = gas_df[gas_df['Month'] > datetime.date(2018, 1, 1)]
 
     gas_price_history_chart = alt.Chart(gas_df).mark_line().encode(
         x=alt.X('Month:T', title='Month'),
