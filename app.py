@@ -56,6 +56,8 @@ st.title('Electric-Vehicle Ownership in the State of Washington')
 
 df = load_csv('data/Electric_Vehicle_Population_Data.csv')
 
+gas_df = load_csv('data/Washington_All_Grades_Conventional_Retail_Gasoline_Prices.csv')
+
 df = df[df['State'] == 'WA']
 df['Vehicle Location'] = df['Vehicle Location'].str.extract('.*\((.*)\).*')
 
@@ -81,7 +83,7 @@ year_range = st.sidebar.slider(label='Model Year', min_value=get_min_year(df), m
 #### End Sidebar ###
 
 ### Content ###
-data_tab, washington_tab, range_tab, additional_stats = st.tabs(['Table', 'Washington State', 'Electric Range', 'Additional Statistics'])
+data_tab, washington_tab, range_tab, gas_tab, additional_stats = st.tabs(['Table', 'Washington State', 'Electric Range', 'Gas Price History', 'Additional Statistics'])
 filtered_df = get_filtered_df(df, ev_type, make, model, year_range)
 
 with data_tab:
@@ -172,6 +174,14 @@ with range_tab:
         
         with min_range_col:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
+
+with gas_tab:
+    gas_price_history_chart = alt.Chart(gas_df).mark_line().encode(
+        x='Month:T',
+        y='Washington All Grades Conventional Retail Gasoline Prices Dollars per Gallon:Q'
+    )
+
+    st.altair_chart(gas_price_history_chart, use_container_width=True)
 
 with additional_stats:
     st.header('Electric Vehicle Type')
