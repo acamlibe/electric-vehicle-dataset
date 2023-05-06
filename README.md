@@ -39,7 +39,7 @@ It is important to note how, where, and why EV ownership is growing in the State
 - Analyze which makes/models are eligible for the **CAFV** eligibility status.
 
 ## Future Work
-- This app can be extended to include additional states that show a similar pattern of EV ownership growth. As EVs grow more in popularity, we may see more citizens of different states make the switch from conventional ICE vehicles.
+This app can be extended to include additional states that show a similar pattern of EV ownership growth. As EVs grow more in popularity, we may see more citizens of different states make the switch from conventional ICE vehicles.
 
 ## Streamlit App
 https://acamlibe-electric-vehicle-dataset-app-91mkz8.streamlit.app
