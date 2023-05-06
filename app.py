@@ -75,7 +75,7 @@ gas_df['Month'] = pd.to_datetime(gas_df['Month'], format='%b-%y').dt.date
 #### End Data Wrangling ####
 
 #### Sidebar ####
-st.sidebar.info('All data on app is reactive to changes here.')
+st.sidebar.info('Settings reactively change data')
 ev_type = st.sidebar.selectbox(label='EV Type', options=['All', 'Battery Electric Vehicle (BEV)', 'Plug-in Hybrid Electric Vehicle (PHEV)'])
 
 make = st.sidebar.selectbox(label='Make', options=get_makes_list(df))
@@ -179,13 +179,9 @@ with range_tab:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
 
 with gas_tab:
-
-
+    st.info('**Info:** Sidebar settings will not affect data on this tab.')
+    
     filtered_gas_df = gas_df[gas_df['Month'] >= datetime.date(2015, 1, 1)]
-
-    st.dataframe(filtered_gas_df)
-
-    st.write(filtered_gas_df.dtypes)
 
     gas_price_history_chart = alt.Chart(filtered_gas_df).mark_line().encode(
         x=alt.X('yearmonth(Month):T', title='Month'),
