@@ -51,6 +51,7 @@ def get_filtered_df(df, ev_type, make, model, year_range):
 ### Streamlit General ###
 st.set_page_config(layout='wide')
 st.title('Electric-Vehicle Ownership in the State of Washington')
+st.sidebar.title('Page Settings')
 ### End Streamlit General ###
 
 #### Data Wrangling ####
