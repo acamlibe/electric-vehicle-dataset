@@ -189,7 +189,7 @@ with gas_tab:
 
     gas_price_history_chart = alt.Chart(filtered_gas_df).mark_line().encode(
         x=alt.X('yearmonth(Month):T', title='Month'),
-        y=alt.Y('Washington All Grades Conventional Retail Gasoline Prices Dollars per Gallon:Q', title='Gas Price ($)')
+        y=alt.Y('Washington All Grades Conventional Retail Gasoline Prices Dollars per Gallon:Q', title='Gas Price ($)', scale=alt.Scale(domain=[2, 5]))
     )
 
     st.altair_chart(gas_price_history_chart, use_container_width=True)
