@@ -82,7 +82,7 @@ with data_tab:
 
 with washington_tab:
     map_df = filtered_df[filtered_df['LATITUDE'].notna() & filtered_df['LONGITUDE'].notna()]
-    fig = px.scatter_mapbox(map_df, lat="latitude", lon="longitude", zoom=3)
+    fig = px.scatter_mapbox(map_df, lat="LATITUDE", lon="LONGITUDE", zoom=3)
 
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
