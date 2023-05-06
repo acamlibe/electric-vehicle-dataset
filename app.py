@@ -99,7 +99,7 @@ with washington_tab:
 
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
     top_cities_col, top_counties_col = st.columns(2)
 
