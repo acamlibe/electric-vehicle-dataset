@@ -57,11 +57,11 @@ st.title('Electric-Vehicle Ownership in the State of Washington')
 df = load_csv('data/Electric_Vehicle_Population_Data.csv')
 
 df = df[df['State'] == 'WA']
-df['Vehicle Location EXTRACT'] = df['Vehicle Location'].str.extract('.*\((.*)\).*')
+df['Vehicle Location'] = df['Vehicle Location'].str.extract('.*\((.*)\).*')
 
-df[['LONGITUDE', 'LATITUDE']] = df['Vehicle Location EXTRACT'].str.split(expand=True)
+df[['LONGITUDE', 'LATITUDE']] = df['Vehicle Location'].str.split(expand=True)
 
-df = df.drop(['Vehicle Location EXTRACT'], axis = 1)
+df = df.drop(['Vehicle Location'], axis = 1)
 
 df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
 df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
