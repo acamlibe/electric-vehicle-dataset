@@ -174,6 +174,16 @@ with range_tab:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
 
 with additional_stats:
-    pass
+    ev_type_col, clean_alt_col = st.columns(2)
+
+    with ev_type_col:
+        ev_type_chart = alt.Chart(filtered_df).mark_bar().encode(
+            x=alt.X('count:Q', title='EV Type Count'),
+            y=alt.Y('Electric Vehicle Type:N', sort=alt.EncodingSortField(field='count', order='descending', op='sum')),
+            tooltip=['Electric Vehicle Type', alt.Tooltip('count:Q', title='EV Type Count')]
+        )
+
+        st.altair_chart(ev_type_chart, use_container_width=True)
+
 
 ### End Content ###
