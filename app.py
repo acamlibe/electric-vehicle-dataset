@@ -181,7 +181,7 @@ with range_tab:
 with gas_tab:
 
 
-    filtered_gas_df = gas_df[gas_df['Month'] >= datetime.date(2012, 1, 1)]
+    filtered_gas_df = gas_df[gas_df['Month'] >= datetime.date(2015, 1, 1)]
 
     st.dataframe(filtered_gas_df)
 
