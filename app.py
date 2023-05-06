@@ -107,15 +107,16 @@ with washington_tab:
         st.header('Top 10 Cities')
 
         top_cities_chart = alt.Chart(filtered_df).mark_bar().encode(
-            x=alt.X('count(City):Q', title='City Count'),
-            y=alt.Y('City:N', sort='-x'),
-            tooltip=['County', 'City', alt.Tooltip('count(City):Q', title='City Count')]
+            x=alt.X('count:Q', title='City Count'),
+            y=alt.Y('City:N', sort=alt.SortField(field='count', order='descending', op='sum')),
+            tooltip=['County', 'City', alt.Tooltip('count:Q', title='City Count')]
+        ).transform_aggregate(
+            count='count()',
+            groupby=['City']
         ).transform_window(
-            rank='rank(count(City))',
-            sort=[alt.SortField('count(City)', order='descending')]
-        ).transform_filter(
-            (alt.datum.rank < 10)
-        )
+            window=[{'op': 'rank', 'as': 'rank'}],
+            sort=[{'field': 'count', 'order': 'descending'}]
+        ).transform_filter('datum.rank <= 10')
 
         st.altair_chart(top_cities_chart, use_container_width=True)
     with top_counties_col:
