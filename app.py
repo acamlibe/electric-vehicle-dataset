@@ -47,6 +47,11 @@ def get_filtered_df(df, ev_type, make, model, year_range):
 
 #### End Functions/Methods ####
 
+### Streamlit General ###
+st.set_page_config(layout='wide')
+st.title('Electric-Vehicle Ownership in the State of Washington')
+### End Streamlit General ###
+
 #### Data Wrangling ####
 
 df = load_csv('data/Electric_Vehicle_Population_Data.csv')
@@ -63,12 +68,6 @@ df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
 
 
 #### End Data Wrangling ####
-
-### Streamlit General ###
-st.set_page_config(layout='wide')
-st.title('Electric-Vehicle Ownership in the State of Washington')
-
-### End Streamlit General ###
 
 #### Sidebar ####
 st.sidebar.info('All data on app is reactive to changes here.')
