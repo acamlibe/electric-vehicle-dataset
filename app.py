@@ -188,7 +188,7 @@ with gas_tab:
     st.write(filtered_gas_df.dtypes)
 
     gas_price_history_chart = alt.Chart(filtered_gas_df).mark_line().encode(
-        x=alt.X('Month:O', title='Month'),
+        x=alt.X('monthdate(Month):O', title='Month'),
         y=alt.Y('Washington All Grades Conventional Retail Gasoline Prices Dollars per Gallon:Q', title='Gas Price ($)')
     )
 
