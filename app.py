@@ -179,11 +179,13 @@ with range_tab:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
 
 with gas_tab:
-    st.dataframe(gas_df)
 
-    st.write(gas_df.dtypes)
 
     filtered_gas_df = gas_df[gas_df['Month'] > datetime.date(2018, 1, 1)]
+
+    st.dataframe(filtered_gas_df)
+
+    st.write(filtered_gas_df.dtypes)
 
     gas_price_history_chart = alt.Chart(filtered_gas_df).mark_line().encode(
         x=alt.X('Month', title='Month'),
