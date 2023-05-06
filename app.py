@@ -147,7 +147,7 @@ with range_tab:
         top_electric_range_chart = alt.Chart(range_filtered_df).mark_bar().encode(
             x=alt.X('mean_range:Q', title='Average Range'),
             y=alt.Y('Model:N', sort='-x'),
-            tooltip=['Make', 'Model', alt.Tooltip('mean_range:Q', title='Average Range')]
+            tooltip=['Make', 'Model', alt.Tooltip('mean_range:Q', title='Average Range', format='.0')]
         ).transform_aggregate(
             mean_range='mean(Electric Range)',
             groupby=['Make', 'Model']
