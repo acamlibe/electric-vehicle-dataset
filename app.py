@@ -87,7 +87,7 @@ year_range = st.sidebar.slider(label='Model Year', min_value=get_min_year(df), m
 #### End Sidebar ###
 
 ### Content ###
-data_tab, washington_tab, range_tab, gas_tab, ev_history_tab, additional_stats = st.tabs(['Table', 'Washington State', 'Electric Range', 'Gas Price History', 'EV Ownership History', 'EV Type and CAFV Eligibility'])
+data_tab, washington_tab, range_tab, additional_stats, gas_tab, ev_history_tab = st.tabs(['Data Table', 'Washington State', 'Electric Range', 'EV Type and CAFV Eligibility', 'Gas Price History', 'EV Ownership History'])
 filtered_df = get_filtered_df(df, ev_type, make, model, year_range)
 
 with data_tab:
@@ -196,7 +196,7 @@ with ev_history_tab:
 
     ev_history_chart = alt.Chart(ev_history_df).mark_line().encode(
         x=alt.X('yearmonth(Date):T', title='Date'),
-        y=alt.Y('WPlug-In Hybrid Electric Vehicle (PHEV) Count:Q', title='PHEV Count')
+        y=alt.Y('Plug-In Hybrid Electric Vehicle (PHEV) Count:Q', title='PHEV Count')
     )
 
     st.altair_chart(ev_history_chart, use_container_width=True)
