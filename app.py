@@ -56,8 +56,6 @@ st.title('Electric-Vehicle Ownership in the State of Washington')
 
 df = load_csv('data/Electric_Vehicle_Population_Data.csv')
 
-gas_df = load_csv('data/Washington_All_Grades_Conventional_Retail_Gasoline_Prices.csv')
-
 df = df[df['State'] == 'WA']
 df['Vehicle Location'] = df['Vehicle Location'].str.extract('.*\((.*)\).*')
 
@@ -68,6 +66,10 @@ df = df.drop(['Vehicle Location'], axis = 1)
 df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
 df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
 
+
+
+gas_df = load_csv('data/Washington_All_Grades_Conventional_Retail_Gasoline_Prices.csv')
+gas_df = pd.to_datetime(gas_df['Month'])
 
 #### End Data Wrangling ####
 
@@ -177,6 +179,8 @@ with range_tab:
 
 with gas_tab:
     st.dataframe(gas_df)
+
+    st.write(gas_df.dtypes)
 
     filtered_gas_df = gas_df[gas_df['Month'] > '2018-01-01']
 
