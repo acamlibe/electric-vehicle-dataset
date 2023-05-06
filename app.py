@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
+import plotly.express as px
+
 
 @st.cache_data
 def load_csv(path):
@@ -80,8 +82,11 @@ with data_tab:
 
 with washington_tab:
     map_df = filtered_df[filtered_df['LATITUDE'].notna() & filtered_df['LONGITUDE'].notna()]
-    st.dataframe(map_df)
-    st.map(map_df)
+    fig = px.scatter_mapbox(map_df, lat="latitude", lon="longitude", zoom=3)
+
+    fig.update_layout(mapbox_style="open-street-map")
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    st.plotly_chart(fig)
     
 with range_tab:
     st.info('**Info:** Data recorded with a **0** electric range are ignored.')
