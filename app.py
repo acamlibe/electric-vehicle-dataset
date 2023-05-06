@@ -176,9 +176,11 @@ with range_tab:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
 
 with gas_tab:
+    st.dataframe(gas_df)
+
     gas_price_history_chart = alt.Chart(gas_df).mark_line().encode(
-        x='Month:T',
-        y='Washington All Grades Conventional Retail Gasoline Prices Dollars per Gallon:Q'
+        x=alt.X('Month:T', title='Month'),
+        y=alt.Y('Washington All Grades Conventional Retail Gasoline Prices Dollars per Gallon:Q', title='Gas Price ($)')
     )
 
     st.altair_chart(gas_price_history_chart, use_container_width=True)
