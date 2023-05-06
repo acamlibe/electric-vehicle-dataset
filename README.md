@@ -2,7 +2,7 @@
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://acamlibe-electric-vehicle-dataset-app-91mkz8.streamlit.app/)
 
-## Intro
+## Introduction
 This Streamlit dashboard enables users to view and analyze electric vehicle ownership in the state of washington.
 
 Electric vehicles can be split up into two broad categories:
