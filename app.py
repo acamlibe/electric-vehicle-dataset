@@ -67,10 +67,11 @@ df = df.drop(['Vehicle Location'], axis = 1)
 df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
 df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
 
-
-
 gas_df = load_csv('data/Washington_All_Grades_Conventional_Retail_Gasoline_Prices.csv')
 gas_df['Month'] = pd.to_datetime(gas_df['Month'], format='%b-%y').dt.date
+
+ev_history_df = load_csv('data/Electric_Vehicle_Population_Size_History.csv')
+ev_history_df['Date'] = pd.to_datetime(ev_history_df['Date'], format='%B %d %Y').dt.date
 
 #### End Data Wrangling ####
 
@@ -86,7 +87,7 @@ year_range = st.sidebar.slider(label='Model Year', min_value=get_min_year(df), m
 #### End Sidebar ###
 
 ### Content ###
-data_tab, washington_tab, range_tab, gas_tab, additional_stats = st.tabs(['Table', 'Washington State', 'Electric Range', 'Gas Price History', 'EV Type and CAFV Eligibility'])
+data_tab, washington_tab, range_tab, gas_tab, ev_history_tab, additional_stats = st.tabs(['Table', 'Washington State', 'Electric Range', 'Gas Price History', 'EV Ownership History', 'EV Type and CAFV Eligibility'])
 filtered_df = get_filtered_df(df, ev_type, make, model, year_range)
 
 with data_tab:
@@ -189,6 +190,16 @@ with gas_tab:
     )
 
     st.altair_chart(gas_price_history_chart, use_container_width=True)
+
+with ev_history_tab:
+    st.info('**Info:** Sidebar settings will not affect data on this tab.')
+
+    ev_history_chart = alt.Chart(ev_history_df).mark_line().encode(
+        x=alt.X('yearmonth(Date):T', title='Date'),
+        y=alt.Y('WPlug-In Hybrid Electric Vehicle (PHEV) Count:Q', title='PHEV Count')
+    )
+
+    st.altair_chart(ev_history_chart, use_container_width=True)
 
 with additional_stats:
     st.header('Electric Vehicle Type')
