@@ -179,8 +179,8 @@ with additional_stats:
     bev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Battery Electric Vehicle (BEV)'])
     phev_count = len(filtered_df[filtered_df['Electric Vehicle Type'] == 'Plug-in Hybrid Electric Vehicle (PHEV)'])
 
-    st.metric(label='Battery Electric Vehicle (BEV)', value=bev_count)
-    st.metric(label='Plug-in Hybrid Electric Vehicle (PHEV)', value=phev_count)
+    st.metric(label='Battery Electric Vehicle (BEV)', value=f'{bev_count:,}')
+    st.metric(label='Plug-in Hybrid Electric Vehicle (PHEV)', value=f'{phev_count:,}')
 
 
     st.header('Clean Alternative Fuel Vehicle (CAFV) Eligibility')
