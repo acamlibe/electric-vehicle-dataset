@@ -179,7 +179,7 @@ with additional_stats:
     with ev_type_col:
         ev_type_chart = alt.Chart(filtered_df).mark_arc().encode(
             theta=alt.Theta('count(Electric Vehicle Type):Q', title='EV Type Count'),
-            category=alt.Y('Electric Vehicle Type:N'),
+            color=alt.Y('Electric Vehicle Type:N'),
         )
 
         st.altair_chart(ev_type_chart, use_container_width=True)
@@ -187,7 +187,7 @@ with additional_stats:
     with clean_alt_col:
         clean_alt_chart = alt.Chart(filtered_df).mark_arc().encode(
             theta=alt.X('count(Clean Alternative Fuel Vehicle (CAFV) Eligibility):Q', title='Clean Alternative Fuel Vehicle (CAFV) Eligibility Count'),
-            category=alt.Y('Clean Alternative Fuel Vehicle (CAFV) Eligibility:N'),
+            color=alt.Y('Clean Alternative Fuel Vehicle (CAFV) Eligibility:N'),
         )
 
         st.altair_chart(clean_alt_chart, use_container_width=True)
