@@ -12,4 +12,14 @@ EV ownership has increased over the years as citizens of Washington are reluctan
 
 Find national gas prices here: https://gasprices.aaa.com/state-gas-price-averages/
 
-Along with high gas prices, the state of Washington passed, in 2019, a bill to determine eligibility for the **Clean Alternative Fuel Eligibility (CAFV)** status. This bill protects consumers and provides benefits for EV vehicles that are eligible. Read more here: https://app.leg.wa.gov/rcw/default.aspx?cite=82.08.9999
+Along with high gas prices, the State of Washington passed, in 2019, a bill to determine eligibility for the **Clean Alternative Fuel Eligibility (CAFV)** status. This bill protects consumers and provides benefits for EV vehicles that are eligible. 
+
+CAFV Bill Details: https://app.leg.wa.gov/rcw/default.aspx?cite=82.08.9999
+
+**Use Case:** It is important to note how, where, and why EV ownership is growing in the State of Washington.
+
+Features:
+- Analyze which cities and counties have the largest EV ownership, and which cities are lagging behind.
+- View how range differs between various make and models of Battery Electric and Plug-In Hybrid vehicles.
+- Analyze gas prices and EV ownership over time. View possible correlations between increasing gas prices and increasing EV ownership.
+- Analyze which makes/models are eligible for the **CAFV** eligibility status.
