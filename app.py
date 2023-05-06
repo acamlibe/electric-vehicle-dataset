@@ -4,7 +4,6 @@ import numpy as np
 import altair as alt
 import plotly.express as px
 
-
 @st.cache_data
 def load_csv(path):
     return pd.read_csv(path)
@@ -49,11 +48,11 @@ st.set_page_config(layout='wide')
 df = load_csv('data/Electric_Vehicle_Population_Data.csv')
 
 df = df[df['State'] == 'WA']
-df['Vehicle Location'] = df['Vehicle Location'].str.extract('.*\((.*)\).*')
+df['Vehicle Location EXTRACT'] = df['Vehicle Location'].str.extract('.*\((.*)\).*')
 
-df[['LATITUDE', 'LONGITUDE']] = df['Vehicle Location'].str.split(expand=True)
+df[['LONGITUDE', 'LATITUDE']] = df['Vehicle Location EXTRACT'].str.split(expand=True)
 
-df = df.drop(['Vehicle Location'], axis = 1)
+df = df.drop(['Vehicle Location EXTRACT'], axis = 1)
 
 df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
 df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
@@ -82,12 +81,11 @@ with data_tab:
 
 with washington_tab:
     map_df = filtered_df[filtered_df['LATITUDE'].notna() & filtered_df['LONGITUDE'].notna()]
-    fig = px.scatter_mapbox(map_df, lat="LATITUDE", lon="LONGITUDE", zoom=3)
+    fig = px.scatter_mapbox(df, lat="LATITUDE", lon="LONGITUDE", zoom=3)
 
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
     st.plotly_chart(fig)
-    
 with range_tab:
     st.info('**Info:** Data recorded with a **0** electric range are ignored.')
 
