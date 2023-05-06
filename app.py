@@ -172,6 +172,6 @@ with range_tab:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
 
 with additional_stats:
-
+    pass
 
 ### End Content ###
