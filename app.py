@@ -196,12 +196,14 @@ with ev_history_tab:
 
     phev_history_chart = alt.Chart(ev_history_df).mark_line().encode(
         x=alt.X('yearmonth(Date):T', title='Date'),
-        y=alt.Y('Plug-In Hybrid Electric Vehicle (PHEV) Count:Q', title='Plug-In Hybrid Electric Vehicle (PHEV) Count')
+        y=alt.Y('Plug-In Hybrid Electric Vehicle (PHEV) Count:Q', title='Plug-In Hybrid Electric Vehicle (PHEV) Count'),
+        color='orange'
     )
 
     bev_history_chart = alt.Chart(ev_history_df).mark_line().encode(
         x=alt.X('yearmonth(Date):T', title='Date'),
-        y=alt.Y('Battery Electric Vehicle (BEV) Count:Q', title='Battery Electric Vehicle (BEV) Count')
+        y=alt.Y('Battery Electric Vehicle (BEV) Count:Q', title='Battery Electric Vehicle (BEV) Count'),
+        color='blue'
     )
 
     st.altair_chart(phev_history_chart + bev_history_chart, use_container_width=True)
