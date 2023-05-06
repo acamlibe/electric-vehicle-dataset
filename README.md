@@ -17,6 +17,18 @@ Along with high gas prices, the State of Washington passed, in 2019, a bill to d
 
 CAFV Bill Details: https://app.leg.wa.gov/rcw/default.aspx?cite=82.08.9999
 
+## Data Sources
+The data used in this app is found in three CSV files.
+1. Electric Vehicle Population Dataset (https://data.wa.gov/Transportation/Electric-Vehicle-Population-Data/f6w7-q2d2)
+2. Electric Vehicle SizeHistory Dataset (https://data.wa.gov/Transportation/Electric-Vehicle-Population-Size-History/d886-d5q2/data)
+3. Washington State All Grades Conventional Retail Gasoline Prices (https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=pet&s=emm_epm0u_pte_swa_dpg&f=m)
+
+## Data Preparation
+- Date conversions
+- Converted from geocoded POINT variable to latitude and longitude columns
+- NA values have been dropped for the Plotly.Express map display
+- Electric ranges that have not been disclosed (0) dropped for EV range analysis
+
 ## Use Case
 It is important to note how, where, and why EV ownership is growing in the State of Washington. This can enable users such as government employees, dealerships, and EV manufacturers target specific cities/counties depending on EV ownership.
 
@@ -26,7 +38,8 @@ It is important to note how, where, and why EV ownership is growing in the State
 - Analyze gas prices and EV ownership over time. View possible correlations between increasing gas prices and increasing EV ownership.
 - Analyze which makes/models are eligible for the **CAFV** eligibility status.
 
-
+## Future Work
+- This app can be extended to include additional states that show a similar pattern of EV ownership growth. As EVs grow more in popularity, we may see more citizens of different states make the switch from conventional ICE vehicles.
 
 ## Streamlit App
 https://acamlibe-electric-vehicle-dataset-app-91mkz8.streamlit.app
