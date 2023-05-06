@@ -104,25 +104,35 @@ with washington_tab:
     top_cities_col, top_counties_col = st.columns(2)
 
     with top_cities_col:
-        st.header('Top Cities')
+        st.header('Top 10 Cities')
 
-        top_electric_range_chart = alt.Chart(filtered_df).mark_bar().encode(
+        top_cities_chart = alt.Chart(filtered_df).mark_bar().encode(
             x=alt.X('count(City):Q', title='City Count'),
             y=alt.Y('City:N', sort='-x'),
             tooltip=['County', 'City', alt.Tooltip('count(City):Q', title='City Count')]
+        ).transform_window(
+            rank='rank(count(City))',
+            sort=[alt.SortField('count(City)', order='descending')]
+        ).transform_filter(
+            (alt.datum.rank < 10)
         )
 
-        st.altair_chart(top_electric_range_chart, use_container_width=True)
+        st.altair_chart(top_cities_chart, use_container_width=True)
     with top_counties_col:
-        st.header('Top Counties')
+        st.header('Top 10 Counties')
 
-        top_electric_range_chart = alt.Chart(filtered_df).mark_bar().encode(
+        top_counties_chart = alt.Chart(filtered_df).mark_bar().encode(
             x=alt.X('count(County):Q', title='County Count'),
             y=alt.Y('County:N', sort='-x'),
             tooltip=['County', alt.Tooltip('count(County):Q', title='County Count')]
+        ).transform_window(
+            rank='rank(count(County))',
+            sort=[alt.SortField('count(County)', order='descending')]
+        ).transform_filter(
+            (alt.datum.rank < 10)
         )
 
-        st.altair_chart(top_electric_range_chart, use_container_width=True)
+        st.altair_chart(top_counties_chart, use_container_width=True)
     
 with range_tab:
     st.info('**Info:** Data recorded with a **0** electric range are ignored.')
@@ -160,5 +170,8 @@ with range_tab:
         
         with min_range_col:
             st.metric(label='Min Range', value=round(np.min(range_filtered_df['Electric Range'])))
+
+with additional_stats:
+
 
 ### End Content ###
